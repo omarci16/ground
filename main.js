@@ -75,55 +75,40 @@ const navObserver = new IntersectionObserver(
 
 sections.forEach(s => navObserver.observe(s));
 
-// 4. Mobile nav toggle
+// 4. Mobile nav toggle + scroll lock (unified)
 const navToggle = document.querySelector('.nav-toggle');
 const navEl = document.getElementById('nav');
-
-if (navToggle && navEl) {
-  navToggle.addEventListener('click', () => {
-    navEl.classList.toggle('nav-open');
-    const isOpen = navEl.classList.contains('nav-open');
-    navToggle.setAttribute('aria-expanded', isOpen);
-  });
-
-  // Close on nav link click
-  navEl.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      navEl.classList.remove('nav-open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    });
-  });
-
-  // Close on outside click
-  document.addEventListener('click', (e) => {
-    if (navEl.classList.contains('nav-open') && !navEl.contains(e.target)) {
-      navEl.classList.remove('nav-open');
-      navToggle.setAttribute('aria-expanded', 'false');
-    }
-  });
-}
-
-// 5. Prevent body scroll when mobile nav is open
 const htmlEl = document.documentElement;
 
+function setNavOpen(open) {
+  navEl.classList.toggle('nav-open', open);
+  navToggle.setAttribute('aria-expanded', String(open));
+  htmlEl.style.overflow = open ? 'hidden' : '';
+}
+
 if (navToggle && navEl) {
-  navEl.addEventListener('click', () => {
-    if (navEl.classList.contains('nav-open')) {
-      htmlEl.style.overflow = 'hidden';
-    } else {
-      htmlEl.style.overflow = '';
+  navToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    setNavOpen(!navEl.classList.contains('nav-open'));
+  });
+
+  // Close when a nav link is tapped
+  navEl.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => setNavOpen(false));
+  });
+
+  // Close on tap outside the nav
+  document.addEventListener('click', (e) => {
+    if (navEl.classList.contains('nav-open') && !navEl.contains(e.target)) {
+      setNavOpen(false);
     }
   });
 
-  navEl.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      htmlEl.style.overflow = '';
-    });
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!navEl.contains(e.target)) {
-      htmlEl.style.overflow = '';
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navEl.classList.contains('nav-open')) {
+      setNavOpen(false);
+      navToggle.focus();
     }
   });
 }
