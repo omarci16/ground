@@ -25,7 +25,7 @@
 <body>
 
   <!-- NAV -->
-  <nav id="nav">
+  <nav id="nav" class="nav-transparent">
     <div class="nav-inner">
       <a href="#hero" class="nav-logo"><img src="assets/images/ground_logo.PNG" alt="A Ground" class="nav-logo-img"></a>
       <div class="nav-controls">
@@ -38,7 +38,7 @@
         <li><a href="#csapat" data-hu="Csapat" data-en="Team">Csapat</a></li>
         <li><a href="#szolgaltatasok" data-hu="Szolgáltatások" data-en="Services">Szolgáltatások</a></li>
         <li><a href="#galeria" data-hu="Galéria" data-en="Gallery">Galéria</a></li>
-        <li><a href="#velemenyek" data-hu="Vélemények" data-en="Reviews">Vélemények</a></li>
+        <li><a href="#skool" data-hu="Közösség" data-en="Community">Közösség</a></li>
         <li><a href="#kapcsolat" data-hu="Kapcsolat" data-en="Contact">Kapcsolat</a></li>
         <li><a href="[SALONIC_BOOKING_URL]" class="nav-cta" data-hu="IDŐPONTFOGLALÁS" data-en="BOOK NOW">IDŐPONTFOGLALÁS</a></li>
         <li class="nav-lang-item">
@@ -54,6 +54,7 @@
 
   <!-- HERO -->
   <section id="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
     <div class="hero-inner">
       <div class="hero-content">
         <h1 class="hero-headline" data-hu="Ahol a mesterség otthon érezheti magát." data-en="Where craft feels like home.">Ahol a mesterség otthon érezheti magát.</h1>
@@ -79,8 +80,7 @@
           <span class="section-label" data-hu="Az alapítótól" data-en="From the founder">Az alapítótól</span>
           <h2 class="section-heading about-heading" data-hu="Marozsán Dávid vagyok,&lt;br&gt;a szalon alapítója." data-en="I'm Marozsán Dávid,&lt;br&gt;founder of A Ground.">Marozsán Dávid vagyok,<br>a szalon alapítója.</h2>
           <p class="about-para reveal" style="--i:1" data-hu="A Ground-ot nem üzleti tervvel nyitottam — megnyitottam, mert olyan helyet akartam létrehozni, amilyet én is szívesen látogatok. Debrecenben sokáig hiányoltam azt a típusú borbélyüzletet, ahol az ember nem csak nyiratkozni megy, hanem egy kicsit feltöltődik. Ahol valaki örül, hogy bejöttél." data-en="I didn't open A Ground with a business plan — I opened it because I wanted to create the kind of place I'd want to visit myself. For a long time, Debrecen was missing that type of barbershop where you don't just go to get a haircut, but you come away feeling a little recharged. Where someone is genuinely glad you came.">A Ground-ot nem üzleti tervvel nyitottam — megnyitottam, mert olyan helyet akartam létrehozni, amilyet én is szívesen látogatok. Debrecenben sokáig hiányoltam azt a típusú borbélyüzletet, ahol az ember nem csak nyiratkozni megy, hanem egy kicsit feltöltődik. Ahol valaki örül, hogy bejöttél.</p>
-          <p class="about-para reveal" style="--i:2" data-hu="Ahol a kávé nem opció, hanem alap. Ahol a csapat nemcsak jól dolgozik, hanem jelen van — teljesen. Ez volt az elképzelés, és ezt próbáljuk minden nap megélni." data-en="Where coffee isn't optional — it's just what happens. Where the team doesn't just do great work, but is fully present. That was the idea, and that's what we try to live up to every day.">Ahol a kávé nem opció, hanem alap. Ahol a csapat nemcsak jól dolgozik, hanem jelen van — teljesen. Ez volt az elképzelés, és ezt próbáljuk minden nap megélni.</p>
-          <p class="about-para reveal" style="--i:3" data-hu="A Ground egy közösség. Öt borbély, akik mind saját kézjeggyel rendelkeznek, de ugyanazt a vendégszeretetet képviselik. Visszajáró vendégek, akik néha csak azért jönnek, mert jó itt lenni. Ez az, amire büszke vagyok." data-en="A Ground is a community. Five barbers, each with their own signature, but all carrying the same spirit of hospitality. Returning guests who sometimes come just because it feels good to be here. That's what I'm proud of.">A Ground egy közösség. Öt borbély, akik mind saját kézjeggyel rendelkeznek, de ugyanazt a vendégszeretetet képviselik. Visszajáró vendégek, akik néha csak azért jönnek, mert jó itt lenni. Ez az, amire büszke vagyok.</p>
+          <p class="about-para reveal" style="--i:2" data-hu="A Ground egy közösség. Öt borbély, akik mind saját kézjeggyel rendelkeznek, de ugyanazt a vendégszeretetet képviselik. Visszajáró vendégek, akik néha csak azért jönnek, mert jó itt lenni. Ez az, amire büszke vagyok." data-en="A Ground is a community. Five barbers, each with their own signature, but all carrying the same spirit of hospitality. Returning guests who sometimes come just because it feels good to be here. That's what I'm proud of.">A Ground egy közösség. Öt borbély, akik mind saját kézjeggyel rendelkeznek, de ugyanazt a vendégszeretetet képviselik. Visszajáró vendégek, akik néha csak azért jönnek, mert jó itt lenni. Ez az, amire büszke vagyok.</p>
         </div>
       </div>
 
@@ -150,76 +150,29 @@
     <div class="section-inner">
       <span class="section-label reveal" style="--i:0" data-hu="Árak és szolgáltatások" data-en="Pricing &amp; services">Árak és szolgáltatások</span>
       <h2 class="section-heading reveal" style="--i:1" data-hu="Szolgáltatások" data-en="Services">Szolgáltatások</h2>
-      <p class="section-lead reveal" style="--i:2">Minden, amire szükséged van — és semmi felesleges.</p>
+      <p class="section-lead reveal" style="--i:2" data-hu="Minden, amire szükséged van — és semmi felesleges." data-en="Everything you need — nothing you don't.">Minden, amire szükséged van — és semmi felesleges.</p>
 
-      <ul class="services-list">
-        <li class="service-item reveal" style="--i:3">
-          <div class="service-info">
-            <span class="service-name">Hajvágás</span>
-            <span class="service-desc">Klasszikus vagy modern, az ízlésednek megfelelően</span>
-          </div>
-          <span class="service-price font-ui">4.500 Ft</span>
-        </li>
-        <li class="service-item reveal" style="--i:4">
-          <div class="service-info">
-            <span class="service-name">Fade (gradiens vágás)</span>
-            <span class="service-desc">Fokozatos átmenet géppel és ollóval kombinálva</span>
-          </div>
-          <span class="service-price font-ui">5.500 Ft</span>
-        </li>
-        <li class="service-item reveal" style="--i:5">
-          <div class="service-info">
-            <span class="service-name">Szakállvágás / igazítás</span>
-            <span class="service-desc">Kontúrozás, egyenesítés, precíz formázás</span>
-          </div>
-          <span class="service-price font-ui">3.000 Ft</span>
-        </li>
-        <li class="service-item reveal" style="--i:6">
-          <div class="service-info">
-            <span class="service-name">Hajvágás + szakállvágás</span>
-            <span class="service-desc">A teljes kombinált csomag</span>
-          </div>
-          <span class="service-price font-ui">7.000 Ft</span>
-        </li>
-        <li class="service-item reveal" style="--i:7">
-          <div class="service-info">
-            <span class="service-name">Gyerek hajvágás</span>
-            <span class="service-desc">14 év alatt, türelemmel</span>
-          </div>
-          <span class="service-price font-ui">3.500 Ft</span>
-        </li>
-        <li class="service-item reveal" style="--i:8">
-          <div class="service-info">
-            <span class="service-name">Kopaszra nyírás</span>
-            <span class="service-desc">Nulla fokozattal, simán</span>
-          </div>
-          <span class="service-price font-ui">3.000 Ft</span>
-        </li>
-        <li class="service-item reveal" style="--i:9">
-          <div class="service-info">
-            <span class="service-name">Klasszikus borotválás</span>
-            <span class="service-desc">Egyenes borotvával, forró törülközővel</span>
-          </div>
-          <span class="service-price font-ui">6.500 Ft</span>
-        </li>
-        <li class="service-item reveal" style="--i:10">
-          <div class="service-info">
-            <span class="service-name">Fejbőr masszázs</span>
-            <span class="service-desc">15 perc regenerálódás</span>
-          </div>
-          <span class="service-price font-ui">2.500 Ft</span>
-        </li>
-        <li class="service-item reveal" style="--i:11">
-          <div class="service-info">
-            <span class="service-name">Stílus tanácsadás</span>
-            <span class="service-desc">Arcformához illő vágástípus ajánlása</span>
-          </div>
-          <span class="service-price font-ui service-price--free">Ingyenes</span>
-        </li>
-      </ul>
+      <!-- Barber switcher -->
+      <div class="services-switcher reveal" style="--i:3" role="tablist" aria-label="Válassz borbélyt">
+        <button class="switcher-btn is-active" role="tab" aria-selected="true" data-barber="david">
+          <span class="switcher-name" data-hu="Marozsán Dávid" data-en="Marozsán Dávid">Marozsán Dávid</span>
+        </button>
+        <button class="switcher-btn" role="tab" aria-selected="false" data-barber="attila">
+          <span class="switcher-name" data-hu="Szász Attila" data-en="Szász Attila">Szász Attila</span>
+        </button>
+        <button class="switcher-btn" role="tab" aria-selected="false" data-barber="benjamin">
+          <span class="switcher-name" data-hu="Erdei Benjámin" data-en="Erdei Benjámin">Erdei Benjámin</span>
+        </button>
+        <button class="switcher-btn" role="tab" aria-selected="false" data-barber="zsombor">
+          <span class="switcher-name" data-hu="Sipos Zsombor" data-en="Sipos Zsombor">Sipos Zsombor</span>
+        </button>
+      </div>
 
-      <div class="section-cta reveal" style="--i:12">
-        <a href="[SALONIC_BOOKING_URL]" class="btn-primary" data-hu="IDŐPONTFOGLALÁS" data-en="BOOK NOW">IDŐPONTFOGLALÁS</a>
+      <!-- Service list — populated by JS -->
+      <ul class="services-list" id="services-list" role="tabpanel" aria-live="polite"></ul>
+
+      <div class="section-cta reveal" style="--i:10">
+        <a href="[SALONIC_BOOKING_URL]" class="btn-primary" id="services-book-btn" data-hu="IDŐPONTFOGLALÁS" data-en="BOOK NOW">IDŐPONTFOGLALÁS</a>
       </div>
     </div>
   </section>
@@ -253,6 +206,19 @@
         <div class="gallery-item gallery-item--34 gallery-item-5" aria-hidden="true"></div>
         <div class="gallery-item gallery-item--11 gallery-item-8" aria-hidden="true"></div>
         <div class="gallery-item gallery-item--43 gallery-item-11" aria-hidden="true"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKOOL -->
+  <section id="skool">
+    <div class="skool-bg" aria-hidden="true"></div>
+    <div class="section-inner skool-inner">
+      <span class="section-label reveal" style="--i:0" data-hu="Közösség" data-en="Community">Közösség</span>
+      <h2 class="section-heading reveal" style="--i:1" data-hu="Tanulj tőlünk" data-en="Learn from us">Tanulj tőlünk</h2>
+      <p class="skool-prose reveal" style="--i:2" data-hu="A Ground mögött több évnyi szakmai tapasztalat áll — és Marozsán Dávid ezt nem tartja magának. A Skool platformon rendszeresen osztja meg technikáit, tippjeit és a mesterség hátterét mindazoknak, akik komolyan gondolják a borbálymesterséget." data-en="Behind Ground is years of hands-on expertise — and Marozsán Dávid doesn't keep it to himself. On Skool, he regularly shares his techniques, insights, and the craft behind the work for anyone who takes barbering seriously.">A Ground mögött több évnyi szakmai tapasztalat áll — és Marozsán Dávid ezt nem tartja magának. A Skool platformon rendszeresen osztja meg technikáit, tippjeit és a mesterség hátterét mindazoknak, akik komolyan gondolják a borbálymesterséget.</p>
+      <div class="section-cta reveal" style="--i:3">
+        <a href="[SKOOL_URL]" class="btn-blue" data-hu="CSATLAKOZZ" data-en="JOIN">CSATLAKOZZ</a>
       </div>
     </div>
   </section>
@@ -381,18 +347,6 @@
     </div>
   </section>
 
-  <!-- SKOOL -->
-  <section id="skool">
-    <div class="section-inner skool-inner">
-      <span class="section-label reveal" style="--i:0" data-hu="Közösség" data-en="Community">Közösség</span>
-      <h2 class="section-heading reveal" style="--i:1" data-hu="Tanulj tőlünk" data-en="Learn from us">Tanulj tőlünk</h2>
-      <p class="skool-prose reveal" style="--i:2" data-hu="A Ground mögött több évnyi szakmai tapasztalat áll — és Marozsán Dávid ezt nem tartja magának. A Skool platformon rendszeresen osztja meg technikáit, tippjeit és a mesterség hátterét mindazoknak, akik komolyan gondolják a borbálymesterséget." data-en="Behind Ground is years of hands-on expertise — and Marozsán Dávid doesn't keep it to himself. On Skool, he regularly shares his techniques, insights, and the craft behind the work for anyone who takes barbering seriously.">A Ground mögött több évnyi szakmai tapasztalat áll — és Marozsán Dávid ezt nem tartja magának. A Skool platformon rendszeresen osztja meg technikáit, tippjeit és a mesterség hátterét mindazoknak, akik komolyan gondolják a borbálymesterséget.</p>
-      <div class="section-cta reveal" style="--i:3">
-        <a href="[SKOOL_URL]" class="btn-blue" data-hu="CSATLAKOZZ" data-en="JOIN">CSATLAKOZZ</a>
-      </div>
-    </div>
-  </section>
-
   <!-- KAPCSOLAT -->
   <section id="kapcsolat">
     <div class="section-inner">
@@ -405,11 +359,7 @@
             <span class="kapcsolat-label font-ui" data-hu="CÍM —" data-en="ADDRESS —">CÍM —</span>
             <address class="kapcsolat-value" data-hu="Debrecen, Mester utca 10." data-en="10 Mester Street, Debrecen">Debrecen, Mester utca 10.</address>
           </div>
-          <div class="kapcsolat-detail reveal" style="--i:3">
-            <span class="kapcsolat-label font-ui" data-hu="TEL —" data-en="PHONE —">TEL —</span>
-            <a href="tel:[SALON_PHONE]" class="kapcsolat-value kapcsolat-link">[SALON_PHONE]</a>
-          </div>
-          <div class="kapcsolat-detail kapcsolat-hours reveal" style="--i:4">
+          <div class="kapcsolat-detail kapcsolat-hours reveal" style="--i:3">
             <span class="kapcsolat-label font-ui" data-hu="NYITVATARTÁS —" data-en="HOURS —">NYITVATARTÁS —</span>
             <ul class="hours-list kapcsolat-value">
               <li><span class="hours-day" data-hu="Hétfő" data-en="Monday">Hétfő</span><span class="hours-time" data-hu="Zárva" data-en="Closed">Zárva</span></li>
@@ -418,7 +368,7 @@
               <li><span class="hours-day" data-hu="Vasárnap" data-en="Sunday">Vasárnap</span><span class="hours-time" data-hu="Zárva" data-en="Closed">Zárva</span></li>
             </ul>
           </div>
-          <div class="kapcsolat-social reveal" style="--i:5">
+          <div class="kapcsolat-social reveal" style="--i:4">
             <span class="kapcsolat-label font-ui" data-hu="KÖZÖSSÉGI —" data-en="SOCIAL —">KÖZÖSSÉGI —</span>
             <ul class="social-links">
               <li>
@@ -441,7 +391,7 @@
               </li>
             </ul>
           </div>
-          <div class="kapcsolat-cta reveal" style="--i:6">
+          <div class="kapcsolat-cta reveal" style="--i:5">
             <a href="[SALONIC_BOOKING_URL]" class="btn-primary btn-fullwidth-mobile" data-hu="IDŐPONTFOGLALÁS" data-en="BOOK NOW">IDŐPONTFOGLALÁS</a>
           </div>
         </div>
@@ -469,14 +419,13 @@
     <div class="footer-inner">
       <div class="footer-brand">
         <img src="assets/images/ground_logo.PNG" alt="A Ground" class="footer-logo-img">
-        <p class="footer-tagline" data-hu="Debrecen legjobb reggele kávéval és ollóval." data-en="Debrecen's finest morning, with coffee and scissors.">Debrecen legjobb reggele kávéval és ollóval.</p>
       </div>
       <nav class="footer-nav" aria-label="Footer navigáció">
         <a href="#miert-mi" data-hu="Rólunk" data-en="About us">Rólunk</a>
         <a href="#csapat" data-hu="Csapat" data-en="Team">Csapat</a>
         <a href="#szolgaltatasok" data-hu="Szolgáltatások" data-en="Services">Szolgáltatások</a>
         <a href="#galeria" data-hu="Galéria" data-en="Gallery">Galéria</a>
-        <a href="#velemenyek" data-hu="Vélemények" data-en="Reviews">Vélemények</a>
+        <a href="#skool" data-hu="Közösség" data-en="Community">Közösség</a>
         <a href="#kapcsolat" data-hu="Kapcsolat" data-en="Contact">Kapcsolat</a>
       </nav>
       <div class="footer-meta">

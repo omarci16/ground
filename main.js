@@ -149,3 +149,146 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+// 8. Service switcher — per-barber pricing
+const BARBER_SERVICES = {
+  david: {
+    booking: '[SALONIC_BOOKING_URL]?barber=Marozsan-David',
+    services: [
+      { name: { hu: 'Hajvágás', en: 'Haircut' },                         desc: { hu: 'Klasszikus vagy modern, az ízlésednek megfelelően', en: 'Classic or modern, tailored to your taste' },                           price: '5.500 Ft' },
+      { name: { hu: 'Fade (gradiens vágás)', en: 'Fade' },                desc: { hu: 'Fokozatos átmenet géppel és ollóval — az ő specialitása', en: 'Graduated blend with clippers and scissors — his signature' },       price: '7.000 Ft' },
+      { name: { hu: 'Textúrás vágás', en: 'Textured cut' },              desc: { hu: 'Egyedi textúra, struktúra és kontúr', en: 'Custom texture, structure and contour' },                                             price: '6.000 Ft' },
+      { name: { hu: 'Szakállvágás / igazítás', en: 'Beard trim' },       desc: { hu: 'Kontúrozás, egyenesítés, precíz formázás', en: 'Contour, line-up, precise shaping' },                                            price: '3.500 Ft' },
+      { name: { hu: 'Hajvágás + szakállvágás', en: 'Hair + beard combo' }, desc: { hu: 'A teljes kombinált csomag', en: 'The full combined package' },                                                                   price: '9.500 Ft' },
+    ]
+  },
+  attila: {
+    booking: '[SALONIC_BOOKING_URL]?barber=Szasz-Attila',
+    services: [
+      { name: { hu: 'Hajvágás', en: 'Haircut' },                         desc: { hu: 'Klasszikus vagy modern, az ízlésednek megfelelően', en: 'Classic or modern, tailored to your taste' },                           price: '5.000 Ft' },
+      { name: { hu: 'Skin fade', en: 'Skin fade' },                      desc: { hu: 'Gépes gradiens, nulla fokozatig', en: 'Clipper fade all the way to the skin' },                                                  price: '6.500 Ft' },
+      { name: { hu: 'Szakállvágás / igazítás', en: 'Beard trim' },       desc: { hu: 'Kontúrozás, egyenesítés, precíz formázás', en: 'Contour, line-up, precise shaping' },                                            price: '3.500 Ft' },
+      { name: { hu: 'Beard styling', en: 'Beard styling' },              desc: { hu: 'Szakáll formázás, olajozás és ápolás', en: 'Beard shaping, oil treatment and conditioning' },                                    price: '4.500 Ft' },
+      { name: { hu: 'Klasszikus borotválás', en: 'Classic shave' },      desc: { hu: 'Egyenes borotvával, forró törülközővel — az ő specialitása', en: 'Straight razor with hot towel — his specialty' },              price: '9.500 Ft' },
+      { name: { hu: 'Hajvágás + szakállvágás', en: 'Hair + beard combo' }, desc: { hu: 'A teljes kombinált csomag', en: 'The full combined package' },                                                                   price: '8.000 Ft' },
+    ]
+  },
+  benjamin: {
+    booking: '[SALONIC_BOOKING_URL]?barber=Erdei-Benjamin',
+    services: [
+      { name: { hu: 'Hajvágás', en: 'Haircut' },                         desc: { hu: 'Klasszikus vagy modern, az ízlésednek megfelelően', en: 'Classic or modern, tailored to your taste' },                           price: '4.500 Ft' },
+      { name: { hu: 'Crop haircut', en: 'Crop haircut' },                desc: { hu: 'Modern, strukturált crop — az ő specialitása', en: 'Modern, structured crop — his specialty' },                                  price: '5.500 Ft' },
+      { name: { hu: 'Textúrás vágás', en: 'Textured cut' },              desc: { hu: 'Egyedi textúra, egyedi formák és kontúrok', en: 'Custom texture, shapes and contours' },                                         price: '6.000 Ft' },
+      { name: { hu: 'Szakállvágás / igazítás', en: 'Beard trim' },       desc: { hu: 'Kontúrozás, egyenesítés, precíz formázás', en: 'Contour, line-up, precise shaping' },                                            price: '3.000 Ft' },
+      { name: { hu: 'Hajvágás + szakállvágás', en: 'Hair + beard combo' }, desc: { hu: 'A teljes kombinált csomag', en: 'The full combined package' },                                                                   price: '7.500 Ft' },
+    ]
+  },
+  zsombor: {
+    booking: '[SALONIC_BOOKING_URL]?barber=Sipos-Zsombor',
+    services: [
+      { name: { hu: 'Hajvágás', en: 'Haircut' },                         desc: { hu: 'Klasszikus vagy modern, az ízlésednek megfelelően', en: 'Classic or modern, tailored to your taste' },                           price: '4.500 Ft' },
+      { name: { hu: 'Gyerek hajvágás', en: "Kids' haircut" },            desc: { hu: '14 év alatt, türelemmel és figyelemmel', en: 'Under 14, with patience and care' },                                               price: '3.000 Ft' },
+      { name: { hu: 'Fade (gradiens vágás)', en: 'Fade' },               desc: { hu: 'Fokozatos átmenet géppel kombinálva', en: 'Gradual blend with clippers' },                                                       price: '5.500 Ft' },
+      { name: { hu: 'Modern vágás', en: 'Modern cut' },                  desc: { hu: 'Kortárs stílusok, fiatalos megközelítéssel', en: 'Contemporary styles with a youthful approach' },                               price: '5.000 Ft' },
+      { name: { hu: 'Szakállvágás / igazítás', en: 'Beard trim' },       desc: { hu: 'Kontúrozás, egyenesítés, precíz formázás', en: 'Contour, line-up, precise shaping' },                                            price: '2.500 Ft' },
+      { name: { hu: 'Hajvágás + szakállvágás', en: 'Hair + beard combo' }, desc: { hu: 'A teljes kombinált csomag', en: 'The full combined package' },                                                                   price: '6.500 Ft' },
+    ]
+  }
+};
+
+function renderServices(barberId) {
+  const lang = document.documentElement.dataset.lang || 'hu';
+  const barber = BARBER_SERVICES[barberId];
+  if (!barber) return;
+
+  const list = document.getElementById('services-list');
+  const bookBtn = document.getElementById('services-book-btn');
+
+  if (list) {
+    list.innerHTML = barber.services.map(s => `
+      <li class="service-item">
+        <div class="service-info">
+          <span class="service-name">${s.name[lang]}</span>
+          <span class="service-desc">${s.desc[lang]}</span>
+        </div>
+        <span class="service-price font-ui">${s.price}</span>
+      </li>`).join('');
+  }
+
+  if (bookBtn) {
+    bookBtn.href = barber.booking;
+  }
+}
+
+let activeBarber = 'david';
+const switcherBtns = document.querySelectorAll('.switcher-btn');
+const servicesList = document.getElementById('services-list');
+
+// Initial render
+renderServices(activeBarber);
+
+switcherBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const barber = btn.dataset.barber;
+    if (barber === activeBarber) return;
+
+    switcherBtns.forEach(b => {
+      b.classList.remove('is-active');
+      b.setAttribute('aria-selected', 'false');
+    });
+    btn.classList.add('is-active');
+    btn.setAttribute('aria-selected', 'true');
+    activeBarber = barber;
+
+    if (servicesList) {
+      servicesList.classList.add('is-fading');
+      setTimeout(() => {
+        renderServices(barber);
+        servicesList.classList.remove('is-fading');
+      }, 150);
+    }
+  });
+});
+
+// Re-render on language change so service names/descriptions update
+const langToggleForServices = document.getElementById('lang-toggle');
+if (langToggleForServices) {
+  langToggleForServices.addEventListener('click', () => {
+    // setLanguage() has already updated dataset.lang synchronously before this fires
+    renderServices(activeBarber);
+  });
+}
+
+// 9. Hero parallax background
+// Skip on touch devices (iOS background-attachment: fixed issues) and reduced-motion
+const heroBgEl = document.querySelector('.hero-bg');
+const heroParallaxEl = document.getElementById('hero');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isTouchDevice = window.matchMedia('(hover: none)').matches;
+
+if (heroBgEl && heroParallaxEl && !prefersReducedMotion && !isTouchDevice) {
+  const PARALLAX_SPEED = 0.3; // bg moves at 30% of scroll speed — feels anchored
+  let parallaxTicking = false;
+
+  function updateHeroParallax() {
+    const scrollY = window.scrollY;
+    // Only run while hero is at least partially in view
+    if (scrollY < heroParallaxEl.offsetTop + heroParallaxEl.offsetHeight) {
+      heroBgEl.style.transform = `translateY(${scrollY * PARALLAX_SPEED}px)`;
+    }
+    parallaxTicking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!parallaxTicking) {
+      requestAnimationFrame(updateHeroParallax);
+      parallaxTicking = true;
+    }
+  }, { passive: true });
+
+  // Set on first paint
+  updateHeroParallax();
+}
+
+// Skool section uses CSS background-attachment: fixed for a true viewport-anchored
+// parallax — no JS transform needed. Mobile fallback (hover: none) is handled in CSS.

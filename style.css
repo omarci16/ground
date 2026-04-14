@@ -54,14 +54,14 @@ body::before {
 }
 
 html {
-  font-size: 15px;
+  font-size: 15.5px;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
 
 @media (max-width: 390px) {
   html {
-    font-size: 14px;
+    font-size: 14.5px;
   }
 }
 
@@ -151,9 +151,15 @@ section {
   padding: var(--space-lg) var(--space-sm);
 }
 
+@media (max-width: 600px) {
+  section {
+    padding: 3rem 1.25rem;
+  }
+}
+
 @media (max-width: 390px) {
   section {
-    padding: 3rem 1rem;
+    padding: 2.5rem 1rem;
   }
 }
 
@@ -221,7 +227,7 @@ section {
   background-color: var(--color-accent);
   color: #ffffff;
   font-family: var(--font-ui);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -282,7 +288,7 @@ section {
   background-color: var(--color-accent);
   color: #ffffff;
   font-family: var(--font-ui);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -333,6 +339,11 @@ section {
   color: rgba(232, 221, 208, 0.8);
 }
 
+#nav.nav-transparent .nav-links .nav-cta {
+  color: #ffffff;
+  background-color: var(--color-accent);
+}
+
 #nav.nav-transparent .nav-links a:hover,
 #nav.nav-transparent .nav-links a.active {
   color: var(--color-accent);
@@ -350,13 +361,32 @@ section {
   color: rgba(232, 221, 208, 0.7);
 }
 
-#nav.nav-transparent .nav-links .nav-cta {
-  background-color: var(--color-accent);
-  color: var(--color-bg);
-}
-
 #nav.nav-transparent .nav-toggle span {
   background-color: #ffffff;
+}
+
+/* When mobile menu is open — always solid, regardless of transparent state */
+#nav.nav-open,
+#nav.nav-transparent.nav-open {
+  background-color: var(--color-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom-color: var(--color-border);
+}
+
+#nav.nav-transparent.nav-open .nav-toggle span {
+  background-color: var(--color-text);
+}
+
+#nav.nav-transparent.nav-open .nav-links a {
+  color: var(--color-text-muted);
+}
+
+#nav.nav-transparent.nav-open .lang-toggle,
+#nav.nav-transparent.nav-open .lang-hu,
+#nav.nav-transparent.nav-open .lang-sep,
+#nav.nav-transparent.nav-open .lang-en {
+  color: var(--color-text-muted);
 }
 
 .nav-inner {
@@ -433,7 +463,7 @@ section {
 .nav-toggle span {
   display: block;
   height: 2px;
-  background-color: var(--color-text);
+  background-color: var(--color-bg);
   border-radius: 1px;
   transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               opacity 0.3s ease,
@@ -463,16 +493,17 @@ section {
   display: none;
   flex-direction: column;
   gap: 0;
-  position: absolute;
+  position: fixed;
   top: var(--nav-height);
   left: 0;
   right: 0;
+  bottom: 0;
   background-color: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
-  padding: 0;
-  max-height: calc(100vh - var(--nav-height));
+  border-top: 1px solid var(--color-border);
+  padding: 0.5rem 0 2rem;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  z-index: 999;
 }
 
 .nav-open .nav-links {
@@ -486,14 +517,15 @@ section {
 .nav-links a {
   display: block;
   font-family: var(--font-ui);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--color-text-muted);
-  padding: 1rem var(--space-sm);
-  transition: color 0.2s ease;
+  color: var(--color-text);
+  padding: 1.1rem var(--space-sm);
+  transition: color 0.2s ease, border-color 0.2s ease;
   border-left: 3px solid transparent;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .nav-links a:hover,
@@ -514,7 +546,7 @@ section {
   background: none;
   border: none;
   cursor: pointer;
-  padding: 1rem var(--space-sm);
+  padding: 1.1rem var(--space-sm);
   width: 100%;
   justify-content: flex-start;
 }
@@ -543,37 +575,15 @@ section {
 
 /* Nav CTA — mobile */
 .nav-links .nav-cta {
-  color: var(--color-accent);
-  border-left-color: transparent;
-  font-weight: 400;
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  transition: color 0.3s ease 0.05s;
-  padding: 1.2rem var(--space-sm) !important;
-  margin: var(--space-sm) var(--space-xs);
-  border-radius: 2px;
-  font-size: 0.75rem;
-}
-
-.nav-links .nav-cta::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--color-blue);
-  transform: translateX(-105%);
-  transition: transform 0.45s cubic-bezier(0.76, 0, 0.24, 1);
-  z-index: -1;
-}
-
-.nav-links .nav-cta:hover::before {
-  transform: translateX(0);
+  background-color: var(--color-accent);
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  border: none;
 }
 
 .nav-links .nav-cta:hover {
+  background-color: var(--color-accent-2);
   color: #ffffff;
-  background-color: var(--color-accent);
-  border-bottom-color: transparent;
 }
 
 /* ------------------------------------------------------------
@@ -588,9 +598,37 @@ section {
   position: relative;
   padding: 0;
   overflow: hidden;
-  background:
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.65) 60%, rgba(0, 0, 0, 0.80) 100%),
-    url('assets/images/groundhero.jpg') center / cover no-repeat;
+  background: none;
+}
+
+/* Parallax image layer — oversized so translateY has room to move */
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 130%;
+  background: url('assets/images/groundhero.jpg') center / cover no-repeat;
+  will-change: transform;
+  z-index: 0;
+}
+
+/* Mobile: disable JS parallax, restore static image */
+@media (hover: none), (max-width: 767px) {
+  .hero-bg {
+    height: 100%;
+    will-change: auto;
+  }
+}
+
+/* Dark overlay sits above image, below content */
+#hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.70) 0%, rgba(0, 0, 0, 0.65) 60%, rgba(0, 0, 0, 0.80) 100%);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .hero-inner {
@@ -601,6 +639,8 @@ section {
   display: flex;
   align-items: center;
   flex: 1;
+  position: relative;
+  z-index: 2;
 }
 
 @media (min-width: 600px) {
@@ -650,7 +690,7 @@ section {
   background-color: var(--color-accent);
   color: var(--color-bg);
   font-family: var(--font-ui);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   font-weight: 400;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -693,6 +733,7 @@ section {
   bottom: var(--space-md);
   left: 50%;
   transform: translateX(-50%);
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -710,7 +751,7 @@ section {
 }
 
 .hero-scroll-arrow {
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   color: var(--color-text-muted);
   animation: scrollBounce 2.5s ease-in-out infinite;
   will-change: transform;
@@ -744,13 +785,6 @@ section {
   background-color: var(--color-surface);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
-  padding: 3rem 1rem;
-}
-
-@media (min-width: 600px) {
-  #miert-mi {
-    padding: var(--space-lg) var(--space-sm);
-  }
 }
 
 .about-inner {
@@ -777,11 +811,12 @@ section {
   width: 100%;
   max-width: 320px;
   flex-shrink: 0;
+  margin: 0 auto;
 }
 
 .about-portrait-placeholder {
   width: 100%;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 3 / 4;
   border-radius: 4px;
   background: linear-gradient(145deg, #d4cdc0 0%, #ddd8cc 50%, #c9c2b6 100%);
 }
@@ -838,6 +873,7 @@ section {
     max-width: 280px;
     position: sticky;
     top: calc(var(--nav-height) + var(--space-md));
+    margin: 0;
   }
 }
 
@@ -856,18 +892,16 @@ section {
 /* ------------------------------------------------------------
    CSAPAT
    ------------------------------------------------------------ */
-#csapat {
-  padding-top: var(--space-lg);
-  padding-bottom: var(--space-lg);
-}
 
 .barber-card {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
   margin-bottom: 2rem;
-  padding-bottom: 2rem;
-  border-bottom: 1px solid var(--color-border);
+  padding: 1.5rem;
+  background-color: var(--color-surface);
+  border-radius: 4px;
+  border-bottom: none;
 }
 
 @media (min-width: 600px) {
@@ -880,8 +914,6 @@ section {
 
 .barber-card:last-child {
   margin-bottom: 0;
-  padding-bottom: 0;
-  border-bottom: none;
 }
 
 .barber-photo {
@@ -971,17 +1003,61 @@ section {
   background-color: var(--color-surface);
   border-top: 1px solid var(--color-border);
   border-bottom: 1px solid var(--color-border);
-  padding: 3rem 1rem;
 }
 
-@media (min-width: 600px) {
-  #szolgaltatasok {
-    padding: var(--space-lg) var(--space-sm);
-  }
+/* Barber switcher tab row */
+.services-switcher {
+  display: flex;
+  gap: 0;
+  margin-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
 }
 
+.services-switcher::-webkit-scrollbar {
+  display: none;
+}
+
+.switcher-btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  padding: 0.85rem 2rem 0.85rem 0;
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  transition: color 0.2s ease, border-color 0.2s ease;
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.switcher-btn:hover {
+  color: var(--color-text);
+}
+
+.switcher-btn.is-active {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+
+/* Service list fade on barber switch */
 .services-list {
   margin-bottom: var(--space-md);
+  transition: opacity 0.15s ease;
+}
+
+.services-list.is-fading {
+  opacity: 0;
 }
 
 .service-item {
@@ -1033,14 +1109,14 @@ section {
 
 .service-desc {
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: 0.65rem;
   color: var(--color-text-muted);
   line-height: 1.5;
 }
 
 .service-price {
   font-family: var(--font-ui);
-  font-size: 0.8rem;
+  font-size: 0.65rem;
   font-weight: 400;
   color: var(--color-accent);
   white-space: nowrap;
@@ -1057,17 +1133,6 @@ section {
    ------------------------------------------------------------ */
 #galeria {
   padding-bottom: 0;
-  padding-top: 3rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 600px) {
-  #galeria {
-    padding-top: var(--space-lg);
-    padding-left: var(--space-sm);
-    padding-right: var(--space-sm);
-  }
 }
 
 .gallery-scroll-outer {
@@ -1151,13 +1216,10 @@ section {
   background-color: var(--color-surface);
   border-top: 1px solid var(--color-border);
   overflow: hidden;
-  padding-top: 3rem;
-  padding-bottom: 2rem;
 }
 
 @media (min-width: 600px) {
   #velemenyek {
-    padding-top: var(--space-lg);
     padding-bottom: var(--space-lg);
   }
 }
@@ -1278,25 +1340,66 @@ section {
    SKOOL
    ------------------------------------------------------------ */
 #skool {
+  position: relative;
+  overflow: hidden;
   text-align: center;
-  padding: 3rem 1rem;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: none;
+  border-top: none;
+  border-bottom: none;
 }
 
-@media (min-width: 600px) {
-  #skool {
-    padding-top: var(--space-lg);
-    padding-bottom: var(--space-lg);
+/* Fixed-anchor image layer — stays pinned to viewport while content scrolls over it */
+.skool-bg {
+  position: absolute;
+  inset: 0;
+  background: url('assets/images/groundskool.jpg') center center / cover no-repeat;
+  background-attachment: fixed;
+  z-index: 0;
+}
+
+/* iOS / touch devices: background-attachment: fixed is broken on mobile Safari —
+   fall back to a static cover so the image still fills the section cleanly */
+@media (hover: none), (max-width: 767px) {
+  .skool-bg {
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
   }
 }
 
+/* Dark overlay */
+#skool::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.50) 50%, rgba(0, 0, 0, 0.65) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Content above overlay */
 .skool-inner {
   max-width: 680px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Text on dark background */
+#skool .section-label {
+  color: var(--color-accent);
+}
+
+#skool .section-heading {
+  color: #ffffff;
 }
 
 .skool-prose {
   font-family: var(--font-body);
   font-size: 1rem;
-  color: var(--color-text-muted);
+  color: rgba(232, 221, 208, 0.85);
   line-height: 1.8;
   margin-bottom: var(--space-sm);
   text-align: center;
@@ -1308,13 +1411,6 @@ section {
 #kapcsolat {
   background-color: var(--color-surface);
   border-top: 1px solid var(--color-border);
-  padding: 3rem 1rem;
-}
-
-@media (min-width: 600px) {
-  #kapcsolat {
-    padding: var(--space-lg) var(--space-sm);
-  }
 }
 
 .kapcsolat-grid {
@@ -1456,7 +1552,7 @@ section {
 #footer {
   background-color: var(--color-surface);
   border-top: 1px solid var(--color-border);
-  padding: 2rem 1rem;
+  padding: 2rem 1.25rem;
 }
 
 @media (min-width: 600px) {
@@ -1483,13 +1579,6 @@ section {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.footer-tagline {
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
-  line-height: 1.5;
 }
 
 .footer-nav {
@@ -1523,7 +1612,7 @@ section {
 .footer-copy,
 .footer-credit {
   font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-size: 0.9rem;
   color: var(--color-text-muted);
   line-height: 1.5;
 }
@@ -1561,6 +1650,16 @@ section {
   .barber-card {
     flex-direction: row;
     align-items: flex-start;
+    padding: 0;
+    background-color: transparent;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .barber-card:last-child {
+    padding-bottom: 0;
+    border-bottom: none;
   }
 
   /* Even-indexed cards: image left (default, row) */
@@ -1685,18 +1784,16 @@ section {
 
   /* Nav CTA desktop */
   .nav-links .nav-cta {
-    background-color: var(--color-accent);
-    color: var(--color-bg);
-    border-radius: 2px;
-    border-bottom-color: transparent;
     margin-left: var(--space-md);
-    padding: 0.5rem 1.1rem;
+    background-color: var(--color-accent);
+    color: #ffffff;
+    padding: 0.6rem 1rem;
+    border: none;
   }
 
   .nav-links .nav-cta:hover {
+    background-color: var(--color-accent-2);
     color: #ffffff;
-    background-color: var(--color-accent);
-    border-bottom-color: transparent;
   }
 
   .section-inner {
